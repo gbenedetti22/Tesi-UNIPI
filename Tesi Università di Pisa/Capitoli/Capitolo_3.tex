@@ -1,0 +1,17 @@
+\chapter{Sviluppo dell'applicazione} \label{chapter_sviluppo_app}
+In conformità con i requisiti stabiliti, il Server si avvale di un Database dotato di tabelle pre-caricate, destinato a memorizzare informazioni riguardanti ordini, testate e utenti. Le richieste HTTP vengono gestite attraverso il framework Javalin (vedi \Cref{subsub:javalin}), il quale assicura un'elevata efficienza e affidabilità nella gestione delle interazioni tra Client e Server.\\
+Dal canto suo, il Client è stato attentamente disegnato e progettato in risposta alle specifiche fornite dal tutor aziendale, il quale ha espressamente richiesto un'esperienza di navigazione sobria e incentrata sull'essenziale. In particolare è stato espresso l'importante desiderio che la pagina home dell'applicazione si presenti in modo pulito e minimale, senza suggerimenti di prodotti o elementi superflui. Pertanto, l'interfaccia principale dell'applicazione sarà caratterizzata da una pagina vuota, arricchita solamente da una barra di ricerca ben visibile, il cui scopo è facilitare l'accesso rapido e intuitivo alla vasta gamma di prodotti offerti nel catalogo. Successivamente è stata espressa la necessità di includere, sempre nella pagina home, la visualizzazione tramite lista non ordinata dei prodotti disponibili, oltre a un'altra pagina destinata a mostrare, con lista ordinata per data di aggiunta, i prodotti presenti nel carrello. Infine è stato richiesto un sistema di deeplink, capace di sfruttare il nome dell'azienda e caratterizzato da un insieme di funzionalità particolari:
+\begin{itemize}
+	\item \textbf{Token di Riconoscimento Utente:} Ogni deeplink \underline{deve} contenere il token JWT di riconoscimento di ogni utente inserito nel Database. Questo token sarà utilizzato per identificare in modo univoco l'utente durante la richiesta, consentendo l'accesso a servizi personalizzati e proteggendo i dati sensibili.
+	\item \textbf{Login Automatico per Utenti non Autenticati:} Nel caso in cui un utente non abbia effettuato il login, ma desideri comunque accedere all'applicativo e compiere azioni specifiche, ad esempio effettuare acquisti, il sistema fornirà un meccanismo di login automatico persistente. Cliccando sul deeplink, infatti, l'utente eseguirà la richiesta di login in modo automatico ad offrire un'esperienza semplice e con soluzione di continuità.
+	\item \textbf{Link per Aggiunta Automatica al Carrello:} Al fine di semplificare l'esperienza di acquisto, l'applicazione fornirà un deeplink dedicato che permetterà all'utente di aggiungere automaticamente un prodotto specifico al carrello con una determinata quantità.
+\end{itemize}
+
+\noindent
+Esempio di deeplink che permette di aggiungere un determinato prodotto con id "1340" e quantità "10":
+\begin{lstlisting}
+	info01://codice01.companion.it/token/code=1340/quantity=10
+\end{lstlisting}
+
+\input{Capitoli/Capitolo_3_ Server}
+\input{Capitoli/Capitolo_3_Client}
